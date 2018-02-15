@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="StudentEntities-Web.config Connection String" description="StudentEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/StudentModel.csdl|res://*/StudentModel.ssdl|res://*/StudentModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=sreeani.database.windows.net;initial catalog=Student;persist security info=True;user id=sreeayyala123;password=D0ehHI6s%P^8m4q1E7b!721svhM5d%dx;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\sreea\\Desktop\\GIT\\MyWebsite\\MyWebsite\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='StudentEntities']/@connectionString" />
+  </parameter>
+  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Connection String used in web.config by the application to access the database." defaultValue="DefaultConnection_ConnectionString" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\sreea\\Desktop\\GIT\\MyWebsite\\MyWebsite\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+</parameters>

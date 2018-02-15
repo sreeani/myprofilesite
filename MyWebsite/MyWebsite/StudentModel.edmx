@@ -1,0 +1,796 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="studentModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="AddressID" />
+          </Key>
+          <Property Name="PersonID" Type="int" Nullable="false" />
+          <Property Name="AddressID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Certification">
+          <Key>
+            <PropertyRef Name="CertificationID" />
+          </Key>
+          <Property Name="PersonID" Type="int" Nullable="false" />
+          <Property Name="CertificationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CertificationNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CertificationName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Isuuedate" Type="date" Nullable="false" />
+          <Property Name="ExpirationDate" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IssuingOrganisation" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Location" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Experience" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Education">
+          <Key>
+            <PropertyRef Name="EducationID" />
+          </Key>
+          <Property Name="EducationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PersonID" Type="int" Nullable="false" />
+          <Property Name="DegreeName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="GraduationDate" Type="date" Nullable="false" />
+          <Property Name="Major" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Percentage" Type="decimal" Precision="13" Scale="2" Nullable="false" />
+          <Property Name="InstitutionName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="SpecializedConcentrations" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Hobbies">
+          <Key>
+            <PropertyRef Name="HobbiesID" />
+          </Key>
+          <Property Name="PersonID" Type="int" Nullable="false" />
+          <Property Name="HobbiesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Hobbies" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Interest">
+          <Key>
+            <PropertyRef Name="InterestID" />
+          </Key>
+          <Property Name="PersonID" Type="int" Nullable="false" />
+          <Property Name="InterestID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Area" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Role" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="PersonID" />
+          </Key>
+          <Property Name="PersonID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DOB" Type="date" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="IsAdmin" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Phone">
+          <Key>
+            <PropertyRef Name="PhoneID" />
+          </Key>
+          <Property Name="PersonID" Type="int" Nullable="false" />
+          <Property Name="PhoneID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PhoneNumber" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="ProjectID" />
+          </Key>
+          <Property Name="PersonID" Type="int" Nullable="false" />
+          <Property Name="ProjectID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ProjectDescription" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="TeamSize" Type="int" Nullable="false" />
+          <Property Name="Role" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Skill">
+          <Key>
+            <PropertyRef Name="SkillID" />
+          </Key>
+          <Property Name="PersonID" Type="int" Nullable="false" />
+          <Property Name="SkillID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SkillName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Proficiency" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tracker">
+          <Key>
+            <PropertyRef Name="TrackingID" />
+          </Key>
+          <Property Name="TrackingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TrackingInfo" Type="nvarchar(max)" />
+          <Property Name="LastVisitedOn" Type="datetime2" Precision="3" />
+          <Property Name="NoOfHits" Type="int" />
+          <Property Name="IpAddress" Type="nvarchar" MaxLength="25" />
+        </EntityType>
+        <EntityType Name="Url">
+          <Key>
+            <PropertyRef Name="UrlID" />
+          </Key>
+          <Property Name="PersonID" Type="int" Nullable="false" />
+          <Property Name="UrlID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SocialMedia" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Url" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Work">
+          <Key>
+            <PropertyRef Name="WorkID" />
+          </Key>
+          <Property Name="PersonID" Type="int" Nullable="false" />
+          <Property Name="WorkID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Role" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Duration" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Duties" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ReasonForLeaving" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Company" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Location" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Expertise" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Accomplishments" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_Address_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Address" Type="Self.Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Address">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Certification_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Certification" Type="Self.Certification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Certification">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Education_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Education" Type="Self.Education" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Education">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Hobbies_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Hobbies" Type="Self.Hobbies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Hobbies">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Interest_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Interest" Type="Self.Interest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Interest">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Phone_Phone">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Phone" Type="Self.Phone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Phone">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Project_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Project" Type="Self.Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Skill_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Skill" Type="Self.Skill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Skill">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Url_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Url" Type="Self.Url" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Url">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Work_Person">
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Work" Type="Self.Work" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Work">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="studentModelStoreContainer">
+          <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Certification" EntityType="Self.Certification" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Education" EntityType="Self.Education" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hobbies" EntityType="Self.Hobbies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Interest" EntityType="Self.Interest" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Phone" EntityType="Self.Phone" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Skill" EntityType="Self.Skill" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tracker" EntityType="Self.Tracker" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Url" EntityType="Self.Url" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Work" EntityType="Self.Work" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Address_Person" Association="Self.FK_Address_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Address" EntitySet="Address" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Certification_Person" Association="Self.FK_Certification_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Certification" EntitySet="Certification" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Education_Person" Association="Self.FK_Education_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Education" EntitySet="Education" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Hobbies_Person" Association="Self.FK_Hobbies_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Hobbies" EntitySet="Hobbies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Interest_Person" Association="Self.FK_Interest_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Interest" EntitySet="Interest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Phone_Phone" Association="Self.FK_Phone_Phone">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Phone" EntitySet="Phone" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Project_Person" Association="Self.FK_Project_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Project" EntitySet="Project" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Skill_Person" Association="Self.FK_Skill_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Skill" EntitySet="Skill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Url_Person" Association="Self.FK_Url_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Url" EntitySet="Url" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Work_Person" Association="Self.FK_Work_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="Work" EntitySet="Work" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="studentModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="StudentEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Addresses" EntityType="studentModel.Address" />
+          <EntitySet Name="Certifications" EntityType="studentModel.Certification" />
+          <EntitySet Name="Educations" EntityType="studentModel.Education" />
+          <EntitySet Name="Hobbies" EntityType="studentModel.Hobby" />
+          <EntitySet Name="Interests" EntityType="studentModel.Interest" />
+          <EntitySet Name="People" EntityType="studentModel.Person" />
+          <EntitySet Name="Phones" EntityType="studentModel.Phone" />
+          <EntitySet Name="Projects" EntityType="studentModel.Project" />
+          <EntitySet Name="Skills" EntityType="studentModel.Skill" />
+          <EntitySet Name="Urls" EntityType="studentModel.Url" />
+          <EntitySet Name="Works" EntityType="studentModel.Work" />
+          <AssociationSet Name="FK_Address_Person" Association="studentModel.FK_Address_Person">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Address" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Certification_Person" Association="studentModel.FK_Certification_Person">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Certification" EntitySet="Certifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Education_Person" Association="studentModel.FK_Education_Person">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Education" EntitySet="Educations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Hobbies_Person" Association="studentModel.FK_Hobbies_Person">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Hobby" EntitySet="Hobbies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Interest_Person" Association="studentModel.FK_Interest_Person">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Interest" EntitySet="Interests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Phone_Phone" Association="studentModel.FK_Phone_Phone">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Phone" EntitySet="Phones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Project_Person" Association="studentModel.FK_Project_Person">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Project" EntitySet="Projects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Skill_Person" Association="studentModel.FK_Skill_Person">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Skill" EntitySet="Skills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Url_Person" Association="studentModel.FK_Url_Person">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Url" EntitySet="Urls" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Work_Person" Association="studentModel.FK_Work_Person">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Work" EntitySet="Works" />
+          </AssociationSet>
+          <EntitySet Name="Trackers" EntityType="studentModel.Tracker" />
+        </EntityContainer>
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="AddressID" />
+          </Key>
+          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <Property Name="AddressID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Address1" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Person" Relationship="studentModel.FK_Address_Person" FromRole="Address" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="Certification">
+          <Key>
+            <PropertyRef Name="CertificationID" />
+          </Key>
+          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <Property Name="CertificationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CertificationNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CertificationName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Isuuedate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ExpirationDate" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IssuingOrganisation" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Location" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Experience" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Person" Relationship="studentModel.FK_Certification_Person" FromRole="Certification" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="Education">
+          <Key>
+            <PropertyRef Name="EducationID" />
+          </Key>
+          <Property Name="EducationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <Property Name="DegreeName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="GraduationDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Major" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Percentage" Type="Decimal" Nullable="false" Precision="13" Scale="2" />
+          <Property Name="InstitutionName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SpecializedConcentrations" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Person" Relationship="studentModel.FK_Education_Person" FromRole="Education" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="Hobby">
+          <Key>
+            <PropertyRef Name="HobbiesID" />
+          </Key>
+          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <Property Name="HobbiesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Hobbies" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Person" Relationship="studentModel.FK_Hobbies_Person" FromRole="Hobby" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="Interest">
+          <Key>
+            <PropertyRef Name="InterestID" />
+          </Key>
+          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <Property Name="InterestID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Area" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Role" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Person" Relationship="studentModel.FK_Interest_Person" FromRole="Interest" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="PersonID" />
+          </Key>
+          <Property Name="PersonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DOB" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IsAdmin" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Addresses" Relationship="studentModel.FK_Address_Person" FromRole="Person" ToRole="Address" />
+          <NavigationProperty Name="Certifications" Relationship="studentModel.FK_Certification_Person" FromRole="Person" ToRole="Certification" />
+          <NavigationProperty Name="Educations" Relationship="studentModel.FK_Education_Person" FromRole="Person" ToRole="Education" />
+          <NavigationProperty Name="Hobbies" Relationship="studentModel.FK_Hobbies_Person" FromRole="Person" ToRole="Hobby" />
+          <NavigationProperty Name="Interests" Relationship="studentModel.FK_Interest_Person" FromRole="Person" ToRole="Interest" />
+          <NavigationProperty Name="Phones" Relationship="studentModel.FK_Phone_Phone" FromRole="Person" ToRole="Phone" />
+          <NavigationProperty Name="Projects" Relationship="studentModel.FK_Project_Person" FromRole="Person" ToRole="Project" />
+          <NavigationProperty Name="Skills" Relationship="studentModel.FK_Skill_Person" FromRole="Person" ToRole="Skill" />
+          <NavigationProperty Name="Urls" Relationship="studentModel.FK_Url_Person" FromRole="Person" ToRole="Url" />
+          <NavigationProperty Name="Works" Relationship="studentModel.FK_Work_Person" FromRole="Person" ToRole="Work" />
+        </EntityType>
+        <EntityType Name="Phone">
+          <Key>
+            <PropertyRef Name="PhoneID" />
+          </Key>
+          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <Property Name="PhoneID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PhoneNumber" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Person" Relationship="studentModel.FK_Phone_Phone" FromRole="Phone" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="ProjectID" />
+          </Key>
+          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <Property Name="ProjectID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ProjectDescription" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="TeamSize" Type="Int32" Nullable="false" />
+          <Property Name="Role" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Person" Relationship="studentModel.FK_Project_Person" FromRole="Project" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="Skill">
+          <Key>
+            <PropertyRef Name="SkillID" />
+          </Key>
+          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <Property Name="SkillID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SkillName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Proficiency" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Person" Relationship="studentModel.FK_Skill_Person" FromRole="Skill" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="Url">
+          <Key>
+            <PropertyRef Name="UrlID" />
+          </Key>
+          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <Property Name="UrlID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SocialMedia" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Url1" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Person" Relationship="studentModel.FK_Url_Person" FromRole="Url" ToRole="Person" />
+        </EntityType>
+        <EntityType Name="Work">
+          <Key>
+            <PropertyRef Name="WorkID" />
+          </Key>
+          <Property Name="PersonID" Type="Int32" Nullable="false" />
+          <Property Name="WorkID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Role" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Duration" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Duties" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ReasonForLeaving" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Company" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Location" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Expertise" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Accomplishments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Person" Relationship="studentModel.FK_Work_Person" FromRole="Work" ToRole="Person" />
+        </EntityType>
+        <Association Name="FK_Address_Person">
+          <End Type="studentModel.Person" Role="Person" Multiplicity="1" />
+          <End Type="studentModel.Address" Role="Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Address">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Certification_Person">
+          <End Type="studentModel.Person" Role="Person" Multiplicity="1" />
+          <End Type="studentModel.Certification" Role="Certification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Certification">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Education_Person">
+          <End Type="studentModel.Person" Role="Person" Multiplicity="1" />
+          <End Type="studentModel.Education" Role="Education" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Education">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Hobbies_Person">
+          <End Type="studentModel.Person" Role="Person" Multiplicity="1" />
+          <End Type="studentModel.Hobby" Role="Hobby" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Hobby">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Interest_Person">
+          <End Type="studentModel.Person" Role="Person" Multiplicity="1" />
+          <End Type="studentModel.Interest" Role="Interest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Interest">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Phone_Phone">
+          <End Type="studentModel.Person" Role="Person" Multiplicity="1" />
+          <End Type="studentModel.Phone" Role="Phone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Phone">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Project_Person">
+          <End Type="studentModel.Person" Role="Person" Multiplicity="1" />
+          <End Type="studentModel.Project" Role="Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Skill_Person">
+          <End Type="studentModel.Person" Role="Person" Multiplicity="1" />
+          <End Type="studentModel.Skill" Role="Skill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Skill">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Url_Person">
+          <End Type="studentModel.Person" Role="Person" Multiplicity="1" />
+          <End Type="studentModel.Url" Role="Url" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Url">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Work_Person">
+          <End Type="studentModel.Person" Role="Person" Multiplicity="1" />
+          <End Type="studentModel.Work" Role="Work" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Work">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Tracker">
+          <Key>
+            <PropertyRef Name="TrackingID" />
+          </Key>
+          <Property Name="TrackingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TrackingInfo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastVisitedOn" Type="DateTime" Precision="3" />
+          <Property Name="NoOfHits" Type="Int32" />
+          <Property Name="IpAddress" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="studentModelStoreContainer" CdmEntityContainer="StudentEntities">
+          <EntitySetMapping Name="Addresses">
+            <EntityTypeMapping TypeName="studentModel.Address">
+              <MappingFragment StoreEntitySet="Address">
+                <ScalarProperty Name="Address1" ColumnName="Address" />
+                <ScalarProperty Name="AddressID" ColumnName="AddressID" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Certifications">
+            <EntityTypeMapping TypeName="studentModel.Certification">
+              <MappingFragment StoreEntitySet="Certification">
+                <ScalarProperty Name="Experience" ColumnName="Experience" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="IssuingOrganisation" ColumnName="IssuingOrganisation" />
+                <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
+                <ScalarProperty Name="Isuuedate" ColumnName="Isuuedate" />
+                <ScalarProperty Name="CertificationName" ColumnName="CertificationName" />
+                <ScalarProperty Name="CertificationNumber" ColumnName="CertificationNumber" />
+                <ScalarProperty Name="CertificationID" ColumnName="CertificationID" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Educations">
+            <EntityTypeMapping TypeName="studentModel.Education">
+              <MappingFragment StoreEntitySet="Education">
+                <ScalarProperty Name="SpecializedConcentrations" ColumnName="SpecializedConcentrations" />
+                <ScalarProperty Name="InstitutionName" ColumnName="InstitutionName" />
+                <ScalarProperty Name="Percentage" ColumnName="Percentage" />
+                <ScalarProperty Name="Major" ColumnName="Major" />
+                <ScalarProperty Name="GraduationDate" ColumnName="GraduationDate" />
+                <ScalarProperty Name="DegreeName" ColumnName="DegreeName" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="EducationID" ColumnName="EducationID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hobbies">
+            <EntityTypeMapping TypeName="studentModel.Hobby">
+              <MappingFragment StoreEntitySet="Hobbies">
+                <ScalarProperty Name="Hobbies" ColumnName="Hobbies" />
+                <ScalarProperty Name="HobbiesID" ColumnName="HobbiesID" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Interests">
+            <EntityTypeMapping TypeName="studentModel.Interest">
+              <MappingFragment StoreEntitySet="Interest">
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="InterestID" ColumnName="InterestID" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="People">
+            <EntityTypeMapping TypeName="studentModel.Person">
+              <MappingFragment StoreEntitySet="Person">
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Phones">
+            <EntityTypeMapping TypeName="studentModel.Phone">
+              <MappingFragment StoreEntitySet="Phone">
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneID" ColumnName="PhoneID" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projects">
+            <EntityTypeMapping TypeName="studentModel.Project">
+              <MappingFragment StoreEntitySet="Project">
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="TeamSize" ColumnName="TeamSize" />
+                <ScalarProperty Name="ProjectDescription" ColumnName="ProjectDescription" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Skills">
+            <EntityTypeMapping TypeName="studentModel.Skill">
+              <MappingFragment StoreEntitySet="Skill">
+                <ScalarProperty Name="Proficiency" ColumnName="Proficiency" />
+                <ScalarProperty Name="SkillName" ColumnName="SkillName" />
+                <ScalarProperty Name="SkillID" ColumnName="SkillID" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Urls">
+            <EntityTypeMapping TypeName="studentModel.Url">
+              <MappingFragment StoreEntitySet="Url">
+                <ScalarProperty Name="Url1" ColumnName="Url" />
+                <ScalarProperty Name="SocialMedia" ColumnName="SocialMedia" />
+                <ScalarProperty Name="UrlID" ColumnName="UrlID" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Works">
+            <EntityTypeMapping TypeName="studentModel.Work">
+              <MappingFragment StoreEntitySet="Work">
+                <ScalarProperty Name="Accomplishments" ColumnName="Accomplishments" />
+                <ScalarProperty Name="Expertise" ColumnName="Expertise" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="ReasonForLeaving" ColumnName="ReasonForLeaving" />
+                <ScalarProperty Name="Duties" ColumnName="Duties" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="WorkID" ColumnName="WorkID" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Trackers">
+            <EntityTypeMapping TypeName="studentModel.Tracker">
+              <MappingFragment StoreEntitySet="Tracker">
+                <ScalarProperty Name="IpAddress" ColumnName="IpAddress" />
+                <ScalarProperty Name="NoOfHits" ColumnName="NoOfHits" />
+                <ScalarProperty Name="LastVisitedOn" ColumnName="LastVisitedOn" />
+                <ScalarProperty Name="TrackingInfo" ColumnName="TrackingInfo" />
+                <ScalarProperty Name="TrackingID" ColumnName="TrackingID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

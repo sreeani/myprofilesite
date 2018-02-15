@@ -1,0 +1,30 @@
+﻿
+
+.nav-link
+{
+  font-size: 15px;
+}
+
+.card-header
+{
+    font-size:15px;
+    font-weight:bold
+}
+
+.btn-primary{
+    font-size:12px
+}
+
+.card-body
+{
+    font-size:12px;
+}
+
+.navbar-expand-xl .navbar-nav .nav-link {
+    padding-right: 0.75rem;
+    padding-left: 0.75rem;
+}
+
+.navbar-brand {
+    font-size: 25px;
+}

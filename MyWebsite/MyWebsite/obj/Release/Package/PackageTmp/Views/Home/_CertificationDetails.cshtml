@@ -1,0 +1,205 @@
+﻿@model IEnumerable<MyWebsite.Models.CertificationViewModel>
+
+<h5>Certifications</h5>
+@if (Model.First().IsAdmin)
+{
+    <div style="text-align:right">
+
+        <button type="button" button id="btnCreate" class="btn btn-info btn-sm certificationCreateButton" style="width:80px">Create</button>
+    </div>
+}
+@if (Model.Any())
+{
+    <table id="myTable" table class="table table-responsive table-striped certificationTable">
+        <thead>
+            <tr>
+                
+                <th class="d-none d-lg-block" style="width:230px">
+                    @Html.DisplayNameFor(model => model.CertificationNumber)
+                </th>
+                <th style="width:400px">
+                    @Html.DisplayNameFor(model => model.CertificationName)
+                </th>
+                <th class="d-none d-lg-block" style="width:200px">
+                    @Html.DisplayNameFor(model => model.IssueDate)
+                </th>
+                
+                <th  style="width:100px">
+                    @Html.DisplayNameFor(model => model.IssuingOrganisation)
+                </th>
+                <th  style="width:100px">
+                    @Html.DisplayNameFor(model => model.Location)
+                </th>
+                @if (Model.First().IsAdmin)
+                {
+                    <th style="width:100px">
+                    </th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr data-id="@item.CertificationID">
+                   
+                    <td class="d-none d-lg-block"  style="width:230px">
+                        @Html.DisplayFor(modelItem => item.CertificationNumber)
+                    </td>
+                    <td style="width:400px">
+                        @Html.DisplayFor(modelItem => item.CertificationName)
+                    </td>
+                    <td class="d-none d-lg-block" style="width:200px">
+                        @Html.DisplayFor(modelItem => item.IssueDate)
+                    </td>
+                    
+                    <td  style="width:100px">
+                        @Html.DisplayFor(modelItem => item.IssuingOrganisation)
+                    </td>
+                    <td  style="width:100px">
+                        @Html.DisplayFor(modelItem => item.Location)
+                    </td>
+
+                    @if (Model.First().IsAdmin)
+                    {
+                        <td style="width:100px">
+                            <button type="button" class="btn btn-info btn-sm certificationEditButton" data-toggle="modal" data-target="#editCertificationModal">Edit</button>
+                        </td>
+                    }
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+}
+
+<div id="editCertificationModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Certification</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div id="divCertificationModal" class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <input id="btnSaveCertification" type="button" value="Save" class="btn btn-default" />
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div id="addCertificationModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add Certification</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div id="divCreateCertificationModal" class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <input id="btnAddCertification" type="button" value="Add" class="btn btn-default" />
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<script>
+    $().ready(function () {
+
+        $(".certificationCreateButton").click(function (e) {
+            debugger;
+            var url = "@Url.Action("CertificationCreate")";
+
+            $.ajax({
+                url: url
+            }).done(function (data) {
+                debugger;
+                $("#divCreateCertificationModal").html(data);
+                $("#addCertificationModal").modal('show');
+            });
+
+        });
+
+        $("#btnAddCertification").click(function () {
+
+            $.ajax({
+                url: "/Home/CertificationCreate/",
+                data: $("#frmCreateCertification").serialize(),
+                type: 'POST',
+                success: function (data) {
+
+                    if (data.success) {
+                        $('#addCertificationModal').modal('hide');
+                        var id = $("#CertificationID").val();
+                        refreshDetails(id);
+                    }
+
+                }
+            });
+
+        });
+
+    })
+
+
+
+    $(".certificationEditButton").click(function (e) {
+        var id =  $(this).closest('tr').data('id');
+        debugger;
+            var url = "@Url.Action("CertificationEdit", new { id = "id" })";
+
+            url = url.replace("id", id);
+
+
+            $.ajax({
+                url: url
+            }).done(function (data) {
+                $("#divCertificationModal").html(data);
+                $("#editCertificationModal").modal('show');
+            });
+
+        });
+
+        $("#btnSaveCertification").click(function () {
+
+            $.ajax({
+                url: "/Home/CertificationEdit/",
+                data: $("#frmEditCertification").serialize(),
+                type: 'POST',
+                success: function (data) {
+
+                    if (data.success) {
+                        $('#editCertificationModal').modal('hide');
+                        var id = $("#CertificationID").val();
+                        refreshDetails(id);
+                    }
+
+                }
+            });
+
+        });
+
+
+        @*function refreshDetails(id)
+        {
+            var url = "@Url.Action("MyDetails", "Education", new { id = "__id__"})";
+            url = url.replace("__id__", id);
+            window.location.href = url;
+
+        }*@
+
+
+</script>

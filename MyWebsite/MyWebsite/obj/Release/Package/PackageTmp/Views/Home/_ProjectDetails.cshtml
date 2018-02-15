@@ -1,0 +1,203 @@
+﻿@model IEnumerable<MyWebsite.Models.ProjectViewModel>
+
+    <h5>Acedemic Projects</h5>
+@if (Model.First().IsAdmin)
+{
+    <div style="text-align:right">
+
+        <button type="button" button id="btnCreate" class="btn btn-info btn-sm ProjectCreateButton" style="width:80px">Create</button>
+    </div>
+}
+    @if (Model.Any())
+    {
+        <table id="myTable" table class="table table-responsive table-striped projectTable">
+            <thead>
+                <tr>
+
+                    
+                    <th style="width:350px">
+                        @Html.DisplayNameFor(model => model.ProjectName)
+                    </th>
+                    <th style="width:550px">
+                        @Html.DisplayNameFor(model => model.ProjectDescription)
+                    </th>
+
+                    <th style="width:100px">
+                        @Html.DisplayNameFor(model => model.TeamSize)
+                    </th>
+                    
+                    @if (Model.First().IsAdmin)
+                {
+                        <th style="width:100px">
+                        </th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr data-id="@item.ProjectID">
+
+                        <td style="width:350px">
+                            @Html.DisplayFor(modelItem => item.ProjectName)
+                        </td>
+                        <td style="width:550px">
+                            @Html.DisplayFor(modelItem => item.ProjectDescription)
+                        </td>
+                        <td style="width:200px">
+                            @Html.DisplayFor(modelItem => item.TeamSize)
+                        </td>
+
+                        
+
+                        @if (Model.First().IsAdmin)
+                    {
+                            <td style="width:100px">
+                                <button type="button" button id ="btnProjectEdit "class="btn btn-info btn-sm ProjectEditButton"  data-toggle="modal" data-target="#ProjectEditModal">Edit</button>
+                            </td>
+                        }
+                    </tr>
+                }
+
+            </tbody>
+
+        </table>
+    }
+
+<div id="ProjectEditModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Project</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+             
+            </div>
+            <div id="divProjectEditModal" class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <input id="btnSaveProject" type="button" value="Save" class="btn btn-default" />
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div id="ProjectCreateModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add Project</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                
+            </div>
+            <div id="divProjectCreateModal" class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <input id="btnAddProject" type="button" value="Add" class="btn btn-default" />
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<script>
+    $().ready(function () {
+
+        $(".ProjectCreateButton").click(function (e) {
+            debugger;
+            var url = "@Url.Action("ProjectCreate")";
+
+            $.ajax({
+                url: url
+            }).done(function (data) {
+                debugger;
+                $("#divProjectCreateModal").html(data);
+                $("#ProjectCreateModal").modal('show');
+            });
+
+        });
+
+
+
+        $("#btnAddProject").click(function () {
+
+            $.ajax({
+                url: "/Home/ProjectCreate/",
+                data: $("#frmCreateProject").serialize(),
+                type: 'POST',
+                success: function (data) {
+
+                    if (data.success) {
+                        $('#ProjectCreateModal').modal('hide');
+                        var id = $("#ProjectID").val();
+                        refreshDetails(id);
+                    }
+
+                }
+            });
+
+        });
+
+    })
+</script>
+
+<script>
+    $().ready(function () {
+
+        $(".ProjectEditButton").click(function () {
+            var id = $(this).closest('tr').data('id');
+
+            var url = "@Url.Action("ProjectEdit", new { id = "id" })";
+
+            url = url.replace("id", id);
+
+
+            $.ajax({
+                url: url
+            }).done(function (data) {
+                $("#divProjectEditModal").html(data);
+            });
+
+        });
+
+        $("#btnSaveProject").click(function () {
+
+            $.ajax({
+                url: "/Home/ProjectEdit/",
+                data: $("#frmEditProject").serialize(),
+                type: 'POST',
+                success: function (data) {
+
+                    if (data.success) {
+                        $('#ProjectEditModal').modal('hide');
+                        var id = $("#ProjectID").val();
+                        refreshDetails(id);
+                    }
+
+                }
+            });
+
+        });
+
+
+        @*function refreshDetails(id)
+        {
+            var url = "@Url.Action("MyDetails", "Education", new { id = "__id__"})";
+            url = url.replace("__id__", id);
+            window.location.href = url;
+
+        }*@
+
+
+    });
+
+</script>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="sreesudha" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\sreea\\Desktop\\GIT\\MyWebsite\\MyWebsite\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\sreea\\Desktop\\GIT\\MyWebsite\\MyWebsite\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="DefaultConnection-Web.config Connection String" description="" value="Data Source=tcp:sreeani.database.windows.net,1433;Initial Catalog=Student;User Id=null@sreeani.database.windows.net;Password=D0ehHI6s%P^8m4q1E7b!721svhM5d%dx" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\sreea\\Desktop\\GIT\\MyWebsite\\MyWebsite\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+  <parameter name="StudentEntities-Web.config Connection String" description="" value="metadata=res://*/StudentModel.csdl|res://*/StudentModel.ssdl|res://*/StudentModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;Data Source=tcp:sreeani.database.windows.net,1433;Initial Catalog=Student;User Id=null@sreeani.database.windows.net;Password=D0ehHI6s%P^8m4q1E7b!721svhM5d%dx&quot;" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\sreea\\Desktop\\GIT\\MyWebsite\\MyWebsite\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='StudentEntities']/@connectionString" />
+  </parameter>
+</parameters>

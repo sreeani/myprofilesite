@@ -1,0 +1,52 @@
+﻿@model MyWebsite.Models.UserViewModel
+
+@{
+    ViewBag.Title = "My Details";
+}
+
+<div id="divEducation"></div>
+
+<div id="divCertification"></div>
+
+<div id="divProject"></div>
+
+<div id="divWork"></div>
+    
+<script>
+    $.ajax({
+        url: "/Home/EducationDetails",
+        type: 'GET',
+        success: function (data) {
+            $('#divEducation').html(data);
+
+        }
+    });
+
+    $.ajax({
+        url: "/Home/CertificationDetails",
+        type: 'GET',
+        success: function (data) {
+            $('#divCertification').html(data);
+
+        }
+    });
+
+    $.ajax({
+        url: "/Home/ProjectDetails",
+        type: 'GET',
+        success: function (data) {
+            $('#divProject').html(data);
+
+        }
+    });
+
+    $.ajax({
+        url: "/Home/WorkDetails",
+        type: 'GET',
+        success: function (data) {
+            $('#divWork').html(data);
+
+        }
+    });
+</script>
+

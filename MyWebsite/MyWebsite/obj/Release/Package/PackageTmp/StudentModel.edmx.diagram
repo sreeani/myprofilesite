@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0cbc0254fa19456996d30f1169f5d2c0" Name="Diagram1">
+        <EntityTypeShape EntityType="studentModel.Address" Width="1.5" PointX="3" PointY="24.5" />
+        <EntityTypeShape EntityType="studentModel.Certification" Width="1.5" PointX="3" PointY="6.125" />
+        <EntityTypeShape EntityType="studentModel.Education" Width="1.5" PointX="3" PointY="18.25" />
+        <EntityTypeShape EntityType="studentModel.Hobby" Width="1.5" PointX="3" PointY="9.875" />
+        <EntityTypeShape EntityType="studentModel.Interest" Width="1.5" PointX="3" PointY="27" />
+        <EntityTypeShape EntityType="studentModel.Person" Width="1.5" PointX="0.75" PointY="14.875" />
+        <EntityTypeShape EntityType="studentModel.Phone" Width="1.5" PointX="3" PointY="29.75" />
+        <EntityTypeShape EntityType="studentModel.Project" Width="1.5" PointX="3" PointY="12.375" />
+        <EntityTypeShape EntityType="studentModel.Skill" Width="1.5" PointX="3" PointY="15.5" />
+        <EntityTypeShape EntityType="studentModel.Url" Width="1.5" PointX="3" PointY="21.75" />
+        <EntityTypeShape EntityType="studentModel.Work" Width="1.5" PointX="3" PointY="2.25" />
+        <AssociationConnector Association="studentModel.FK_Address_Person" />
+        <AssociationConnector Association="studentModel.FK_Certification_Person" />
+        <AssociationConnector Association="studentModel.FK_Education_Person" />
+        <AssociationConnector Association="studentModel.FK_Hobbies_Person" />
+        <AssociationConnector Association="studentModel.FK_Interest_Person" />
+        <AssociationConnector Association="studentModel.FK_Phone_Phone" />
+        <AssociationConnector Association="studentModel.FK_Project_Person" />
+        <AssociationConnector Association="studentModel.FK_Skill_Person" />
+        <AssociationConnector Association="studentModel.FK_Url_Person" />
+        <AssociationConnector Association="studentModel.FK_Work_Person" />
+        <EntityTypeShape EntityType="studentModel.Tracker" Width="1.5" PointX="5.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

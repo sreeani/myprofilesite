@@ -1,0 +1,302 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="studentModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Address">
+    <Key>
+      <PropertyRef Name="AddressID" />
+    </Key>
+    <Property Name="PersonID" Type="int" Nullable="false" />
+    <Property Name="AddressID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Certification">
+    <Key>
+      <PropertyRef Name="CertificationID" />
+    </Key>
+    <Property Name="PersonID" Type="int" Nullable="false" />
+    <Property Name="CertificationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CertificationNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CertificationName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Isuuedate" Type="date" Nullable="false" />
+    <Property Name="ExpirationDate" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IssuingOrganisation" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Location" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Experience" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Education">
+    <Key>
+      <PropertyRef Name="EducationID" />
+    </Key>
+    <Property Name="EducationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PersonID" Type="int" Nullable="false" />
+    <Property Name="DegreeName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="GraduationDate" Type="date" Nullable="false" />
+    <Property Name="Major" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Percentage" Type="decimal" Precision="13" Scale="2" Nullable="false" />
+    <Property Name="InstitutionName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="SpecializedConcentrations" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Hobbies">
+    <Key>
+      <PropertyRef Name="HobbiesID" />
+    </Key>
+    <Property Name="PersonID" Type="int" Nullable="false" />
+    <Property Name="HobbiesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Hobbies" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Interest">
+    <Key>
+      <PropertyRef Name="InterestID" />
+    </Key>
+    <Property Name="PersonID" Type="int" Nullable="false" />
+    <Property Name="InterestID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Area" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Role" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Person">
+    <Key>
+      <PropertyRef Name="PersonID" />
+    </Key>
+    <Property Name="PersonID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DOB" Type="date" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="IsAdmin" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Phone">
+    <Key>
+      <PropertyRef Name="PhoneID" />
+    </Key>
+    <Property Name="PersonID" Type="int" Nullable="false" />
+    <Property Name="PhoneID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PhoneNumber" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Project">
+    <Key>
+      <PropertyRef Name="ProjectID" />
+    </Key>
+    <Property Name="PersonID" Type="int" Nullable="false" />
+    <Property Name="ProjectID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProjectName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ProjectDescription" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="TeamSize" Type="int" Nullable="false" />
+    <Property Name="Role" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Skill">
+    <Key>
+      <PropertyRef Name="SkillID" />
+    </Key>
+    <Property Name="PersonID" Type="int" Nullable="false" />
+    <Property Name="SkillID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SkillName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Proficiency" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tracker">
+    <Key>
+      <PropertyRef Name="TrackingID" />
+    </Key>
+    <Property Name="TrackingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TrackingInfo" Type="nvarchar(max)" />
+    <Property Name="LastVisitedOn" Type="datetime2" Precision="3" />
+    <Property Name="NoOfHits" Type="int" />
+    <Property Name="IpAddress" Type="nvarchar" MaxLength="25" />
+  </EntityType>
+  <EntityType Name="Url">
+    <Key>
+      <PropertyRef Name="UrlID" />
+    </Key>
+    <Property Name="PersonID" Type="int" Nullable="false" />
+    <Property Name="UrlID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SocialMedia" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Url" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Work">
+    <Key>
+      <PropertyRef Name="WorkID" />
+    </Key>
+    <Property Name="PersonID" Type="int" Nullable="false" />
+    <Property Name="WorkID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Role" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Duration" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Duties" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ReasonForLeaving" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Company" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Location" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Expertise" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Accomplishments" Type="nvarchar(max)" />
+  </EntityType>
+  <Association Name="FK_Address_Person">
+    <End Role="Person" Type="Self.Person" Multiplicity="1" />
+    <End Role="Address" Type="Self.Address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="Address">
+        <PropertyRef Name="PersonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Certification_Person">
+    <End Role="Person" Type="Self.Person" Multiplicity="1" />
+    <End Role="Certification" Type="Self.Certification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="Certification">
+        <PropertyRef Name="PersonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Education_Person">
+    <End Role="Person" Type="Self.Person" Multiplicity="1" />
+    <End Role="Education" Type="Self.Education" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="Education">
+        <PropertyRef Name="PersonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Hobbies_Person">
+    <End Role="Person" Type="Self.Person" Multiplicity="1" />
+    <End Role="Hobbies" Type="Self.Hobbies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="Hobbies">
+        <PropertyRef Name="PersonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Interest_Person">
+    <End Role="Person" Type="Self.Person" Multiplicity="1" />
+    <End Role="Interest" Type="Self.Interest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="Interest">
+        <PropertyRef Name="PersonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Phone_Phone">
+    <End Role="Person" Type="Self.Person" Multiplicity="1" />
+    <End Role="Phone" Type="Self.Phone" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="Phone">
+        <PropertyRef Name="PersonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Project_Person">
+    <End Role="Person" Type="Self.Person" Multiplicity="1" />
+    <End Role="Project" Type="Self.Project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="PersonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Skill_Person">
+    <End Role="Person" Type="Self.Person" Multiplicity="1" />
+    <End Role="Skill" Type="Self.Skill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="Skill">
+        <PropertyRef Name="PersonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Url_Person">
+    <End Role="Person" Type="Self.Person" Multiplicity="1" />
+    <End Role="Url" Type="Self.Url" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="Url">
+        <PropertyRef Name="PersonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Work_Person">
+    <End Role="Person" Type="Self.Person" Multiplicity="1" />
+    <End Role="Work" Type="Self.Work" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="Work">
+        <PropertyRef Name="PersonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="studentModelStoreContainer">
+    <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Certification" EntityType="Self.Certification" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Education" EntityType="Self.Education" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Hobbies" EntityType="Self.Hobbies" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Interest" EntityType="Self.Interest" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Phone" EntityType="Self.Phone" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Skill" EntityType="Self.Skill" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tracker" EntityType="Self.Tracker" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Url" EntityType="Self.Url" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Work" EntityType="Self.Work" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Address_Person" Association="Self.FK_Address_Person">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="Address" EntitySet="Address" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Certification_Person" Association="Self.FK_Certification_Person">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="Certification" EntitySet="Certification" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Education_Person" Association="Self.FK_Education_Person">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="Education" EntitySet="Education" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Hobbies_Person" Association="Self.FK_Hobbies_Person">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="Hobbies" EntitySet="Hobbies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Interest_Person" Association="Self.FK_Interest_Person">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="Interest" EntitySet="Interest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Phone_Phone" Association="Self.FK_Phone_Phone">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="Phone" EntitySet="Phone" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Project_Person" Association="Self.FK_Project_Person">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="Project" EntitySet="Project" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Skill_Person" Association="Self.FK_Skill_Person">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="Skill" EntitySet="Skill" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Url_Person" Association="Self.FK_Url_Person">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="Url" EntitySet="Url" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Work_Person" Association="Self.FK_Work_Person">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="Work" EntitySet="Work" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

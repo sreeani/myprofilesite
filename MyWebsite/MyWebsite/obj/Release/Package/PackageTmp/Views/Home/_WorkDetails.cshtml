@@ -1,0 +1,211 @@
+﻿@model IEnumerable<MyWebsite.Models.WorkViewModel>
+
+<h5>Work Experience</h5>
+@if (Model.First().IsAdmin)
+{
+    <div style="text-align:right">
+
+        <button type="button" button id="btnCreate" class="btn btn-info btn-sm WorkCreateButton" style="width:80px">Create</button>
+    </div>
+}
+
+@if (Model.Any())
+{
+    <table id="myTable" table class="table table-responsive table-striped WorkTable">
+        <thead>
+            <tr>
+
+
+                <th style="width:300px">
+                    @Html.DisplayNameFor(model => model.Role)
+                </th>
+                <th style="width:350px">
+                    @Html.DisplayNameFor(model => model.company)
+                </th>
+
+                <th style="width:100px">
+                    @Html.DisplayNameFor(model => model.Duration)
+                </th>
+                <th class="d-none d-lg-block" style="width:400px">
+                    @Html.DisplayNameFor(model => model.Duties)
+                </th>
+
+                @if (Model.First().IsAdmin)
+                {
+                    <th style="width:100px">
+                    </th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+                {
+                <tr data-id="@item.WorkID">
+
+                    <td style="width:300px">
+                        @Html.DisplayFor(modelItem => item.Role)
+                    </td>
+                    <td style="width:350px">
+                        @Html.DisplayFor(modelItem => item.company)
+                    </td>
+
+                    <td style="width:100px">
+                        @Html.DisplayFor(modelItem => item.Duration)
+                    </td>
+                    <td class="d-none d-lg-block" style="width:400px">
+                        @Html.DisplayFor(modelItem => item.Duties)
+                    </td>
+
+
+
+                    @if (Model.First().IsAdmin)
+                    {
+                        <td style="width:100px">
+                            <button type="button" button id ="btnWorkEdit "class="btn btn-info btn-sm WorkeditButton"  data-toggle="modal" data-target="#WorkEditmodal">Edit</button>
+                        </td>
+                    }
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+}
+
+<div id="WorkEditmodal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Work</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                
+            </div>
+            <div id="divWorkEditModal" class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <input id="btnSaveWork" type="button" value="Save" class="btn btn-default" />
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div id="WorkCreatemodal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add Work</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                
+            </div>
+            <div id="divWorkCreateModal" class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <input id="btnAddWork" type="button" value="Add" class="btn btn-default" />
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<script>
+    $().ready(function () {
+
+        $(".WorkCreateButton").click(function (e) {
+            debugger;
+            var url = "@Url.Action("WorkCreate")";
+
+            $.ajax({
+                url: url
+            }).done(function (data) {
+                debugger;
+                $("#divWorkCreateModal").html(data);
+                $("#WorkCreatemodal").modal('show');
+            });
+
+        });
+
+
+
+        $("#btnAddWork").click(function () {
+
+            $.ajax({
+                url: "/Home/WorkCreate/",
+                data: $("#frmCreateWork").serialize(),
+                type: 'POST',
+                success: function (data) {
+
+                    if (data.success) {
+                        $('#WorkCreatemodal').modal('hide');
+                        var id = $("#WorkID").val();
+                        refreshDetails(id);
+                    }
+
+                }
+            });
+
+        });
+
+    })
+</script>
+
+<script>
+    $().ready(function () {
+
+        $(".WorkeditButton").click(function () {
+            var id = $(this).closest('tr').data('id');
+
+            var url = "@Url.Action("WorkEdit", new { id = "id" })";
+
+            url = url.replace("id", id);
+
+
+            $.ajax({
+                url: url
+            }).done(function (data) {
+                $("#divWorkEditModal").html(data);
+            });
+
+        });
+
+        $("#btnSaveWork").click(function () {
+
+            $.ajax({
+                url: "/Home/WorkEdit/",
+                data: $("#frmEditWork").serialize(),
+                type: 'POST',
+                success: function (data) {
+
+                    if (data.success) {
+                        $('#WorkEditmodal').modal('hide');
+                        var id = $("#WorkID").val();
+                        refreshDetails(id);
+                    }
+
+                }
+            });
+
+        });
+
+
+        @*function refreshDetails(id)
+        {
+            var url = "@Url.Action("MyDetails", "Education", new { id = "__id__"})";
+            url = url.replace("__id__", id);
+            window.location.href = url;
+
+        }*@
+
+
+    });
+
+</script>
